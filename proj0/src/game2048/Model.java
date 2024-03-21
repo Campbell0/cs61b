@@ -1,5 +1,8 @@
 package game2048;
 
+import edu.princeton.cs.algs4.In;
+
+import java.lang.reflect.Array;
 import java.util.Formatter;
 
 
@@ -93,8 +96,15 @@ public class Model {
      * */
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
-
-
+        Integer size = b.size();
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                Tile tile = b.tile(i, j);
+                if (tile == null) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -105,8 +115,15 @@ public class Model {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
-
-
+        Integer size = b.size();
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                Tile tile = b.tile(i, j);
+                if (tile != null && tile.value() == MAX_PIECE) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -118,8 +135,31 @@ public class Model {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+        // the case that exists empty space.
+        if (emptySpaceExists(b)) {
+            return true;
+        }
 
+        Integer size = b.size();
+        int[][] adjacents = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                Tile tile = b.tile(i, j);
 
+                for (int[] adjacent : adjacents) {
+                    if (i - adjacent[0] > 0 && i - adjacent[0] < size
+                        && j - adjacent[1] > 0 && j - adjacent[1] < size) {
+                        Tile adjacentTile = b.tile(i - adjacent[0], j - adjacent[1]);
+                        if (adjacentTile != null) {
+                            if (adjacentTile.value() == tile.value()) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
         return false;
     }
 
