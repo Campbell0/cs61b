@@ -17,6 +17,7 @@ public class Model {
     /** Maximum score so far.  Updated when game ends. */
     private int maxScore;
 
+
     /* Coordinate System: column C, row R of the board (where row 0,
      * column 0 is the lower-left corner of the board) will correspond
      * to board.tile(c, r).  Be careful! It works like (x, y) coordinates.
@@ -178,9 +179,50 @@ public class Model {
     public void tilt(Side side) {
         // TODO: Modify this.board (and if applicable, this.score) to account
         // for the tilt to the Side SIDE.
+        Integer size = this.board.size();
+        Board t = this.board;
+        t.setViewingPerspective(side);
 
+        for (int col = 0; col < size; ++col) {
+            Integer maxRowCanMove = size - 1;
+            for (int row = size - 2; row >=0; row--) {
+                Tile tile = t.tile(col, row);
+                if (tile != null) {
+                    Integer rowToMove = findRowToMove(col, row, maxRowCanMove);
+                    if (t.move(col, rowToMove, tile)) {
+                        this.score += tile.value() * 2;
+                        maxRowCanMove = rowToMove - 1;
+                    }
+                }
+            }
+        }
+        t.setViewingPerspective(Side.NORTH);
 
         checkGameOver();
+    }
+
+    /** find the row of current tile need to move with the maxRowCanMove
+     *
+     * @param col
+     * @param row
+     * @param maxRowCanMove
+     * @return rowToMove
+     */
+    public Integer findRowToMove(Integer col, Integer row, Integer maxRowCanMove) {
+        Board t = this.board;
+        Tile tileToMove = t.tile(col, row);
+        Integer size = t.size();
+        Integer rowToMove = row;
+        for (int r = row + 1; r <= maxRowCanMove; ++r) {
+            Tile tile = t.tile(col, r);
+            if (tile == null || tile.value() == tileToMove.value()) {
+                rowToMove = r;
+            }
+            else {
+                return rowToMove;
+            }
+        }
+        return rowToMove;
     }
 
 
