@@ -98,9 +98,9 @@ public class Model {
     public static boolean emptySpaceExists(Board b) {
         // TODO: Fill in this function.
         Integer size = b.size();
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                Tile tile = b.tile(i, j);
+        for (int col = 0; col < size; ++col) {
+            for (int row = 0; row < size; ++row) {
+                Tile tile = b.tile(col, row);
                 if (tile == null) {
                     return true;
                 }
@@ -141,6 +141,7 @@ public class Model {
             return true;
         }
 
+        // the case that there are two adjacent tiles with the same value.
         Integer size = b.size();
         int[][] adjacents = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
         for (int i = 0; i < size; ++i) {
