@@ -75,4 +75,10 @@ public interface Deque<T> {
      * @return element at {@code index} in the deque
      */
     T getRecursive(int index);
+
+    /**
+     * return the capacity of current element array
+     *
+     */
+    int capacity();
 }
