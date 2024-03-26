@@ -24,6 +24,12 @@ public class ArrayDequeTest {
      }
 
      @Test
+     public void toListTest() {
+         // test toList works with empty deque.
+         Deque<Integer> lld1 = new ArrayDeque<>();
+         assertThat(lld1.toList()).isEmpty();
+     }
+     @Test
      public void addFirstTest() {
          Deque<Integer> lld1 = new ArrayDeque<>();
 
@@ -74,6 +80,7 @@ public class ArrayDequeTest {
     public void getTest() {
          Deque<Integer> lld1 = new ArrayDeque<>();
          assertThat(lld1.get(0)).isNull();
+         assertThat(lld1.get(-1)).isNull();
 
          lld1.addLast(1);
          lld1.addLast(2);
@@ -211,10 +218,17 @@ public class ArrayDequeTest {
          assertThat(lld1.size()).isEqualTo(0);
          assertThat(lld1.isEmpty()).isTrue();
 
+         // add some element.
          lld1.addLast(1);
          assertThat(lld1.size()).isEqualTo(1);
          assertThat(lld1.isEmpty()).isFalse();
 
+         // remove to empty.
+         lld1.removeFirst();
+         assertThat(lld1.size()).isEqualTo(0);
+         assertThat(lld1.isEmpty()).isTrue();
+
+         // remove from empty.
          lld1.removeFirst();
          assertThat(lld1.size()).isEqualTo(0);
          assertThat(lld1.isEmpty()).isTrue();
