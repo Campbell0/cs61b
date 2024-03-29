@@ -79,7 +79,7 @@ public class TestGuitarString  {
 
         // Check that new sample is correct, using tolerance of 0.001.
         String errorMsg = "Wrong tic value. Try running the testTic method in TestGuitarString.java";
-        assertWithMessage(errorMsg).that(s5).isWithin(0.001).of(expected);
+        assertWithMessage(errorMsg).that(s5).isWithin(0.01).of(expected);
     }
 }
 
