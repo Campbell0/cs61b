@@ -6,6 +6,8 @@ import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Experiments {
@@ -60,8 +62,18 @@ public class Experiments {
         List<Integer> opCounts = new ArrayList<>();
 
         // TODO: YOUR CODE HERE
+        AList<Integer> list = new AList<>();
+        for (int n = 1000; n <= 128000000; n = n * 2) {
+            Ns.add(n);
+            opCounts.add(n);
+            Stopwatch sw = new Stopwatch();
+            for (int i = 0; i < n; ++i) {
+                list.addLast(i);
+            }
+            times.add(sw.elapsedTime());
+        }
 
-        return null;
+        return new TimingData(Ns, times, opCounts);
     }
 
 
@@ -71,16 +83,29 @@ public class Experiments {
         List<Integer> opCounts = new ArrayList<>();
 
         // TODO: YOUR CODE HERE
+        for (int N = 1000; N <= 128000000; N = N * 2) {
+            Ns.add(N);
+            Deque<Integer> list = new LinkedList<>();
+            for (int i = 0; i < N; ++i) {
+                list.addLast(i);
+            }
+            int M = 10000;
+            opCounts.add(M);
+            Stopwatch sw = new Stopwatch();
+            for (int i = 0; i < M; ++i) {
+                list.getLast();
+            }
+            times.add(sw.elapsedTime());
+        }
 
-        return null;
-
+        return new TimingData(Ns, times, opCounts);
     }
 
     public static void main(String[] args) {
         // TODO: Modify the following line to change the experiment you're running
-        TimingData td = exampleFibonacciExperiment();
+        TimingData td = timeSLListGetLast();
         // Modify this line to make the chart title make sense
-        String title = "Naive Recursive Fibonacci";
+        String title = "SLList GetLast()";
 
         // Convert "times" (in seconds) and "opCounts" to nanoseconds / op
         List<Double> timesUsPerOp = new ArrayList<>();
