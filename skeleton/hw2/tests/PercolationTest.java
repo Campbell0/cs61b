@@ -16,16 +16,17 @@ public class PercolationTest {
     }
     @Test
     public void basicTest() {
-        int N = 5;
-        Percolation p = new Percolation(5);
+        int N = 20;
+        Percolation p = new Percolation(20);
         int[][] openSites = {
-                {0, 1},
-                {2, 0},
+                {2, 1},
+                {2, 2},
                 {3, 1},
-                {4, 1},
-                {1, 0},
-                {1, 1}
+                {3, 2},
+                {0, 3},
+                {1, 3}
         };
+
         int[][] expectedState = {
                 {0, 3, 0, 0, 0},
                 {3, 3, 0, 0, 0},
