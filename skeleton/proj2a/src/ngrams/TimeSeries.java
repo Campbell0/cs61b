@@ -1,6 +1,8 @@
 package ngrams;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -26,8 +28,19 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      * inclusive of both end points.
      */
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
-        super();
         // TODO: Fill in this constructor.
+        for (Integer key : ts.keySet()) {
+            if (key >= startYear && key <= endYear) {
+                this.put(key, ts.get(key));
+            }
+        }
+    }
+
+    public TimeSeries(TimeSeries ts) {
+        // TODO: Fill in this constructor.
+        for (Integer key : ts.keySet()) {
+            this.put(key, ts.get(key));
+        }
     }
 
     /**
@@ -35,7 +48,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Integer> years() {
         // TODO: Fill in this method.
-        return null;
+		return new ArrayList<>(keySet());
     }
 
     /**
@@ -44,7 +57,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Double> data() {
         // TODO: Fill in this method.
-        return null;
+        return new ArrayList<>(values());
     }
 
     /**
@@ -58,7 +71,19 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries plus(TimeSeries ts) {
         // TODO: Fill in this method.
-        return null;
+        if (size() == 0 && ts.size() == 0) {
+            return new TimeSeries();
+        }
+        TimeSeries copy = new TimeSeries(this);
+        for (Integer year : ts.keySet()) {
+            if (containsKey(year)) {
+                copy.put(year, get(year) + ts.get(year));
+            }
+            else {
+                copy.put(year, ts.get(year));
+            }
+        }
+        return copy;
     }
 
     /**
@@ -72,7 +97,19 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries dividedBy(TimeSeries ts) {
         // TODO: Fill in this method.
-        return null;
+        if (size() == 0 && ts.size() == 0) {
+            return new TimeSeries();
+        }
+        TimeSeries copy = new TimeSeries();
+        for (Integer key : keySet()) {
+            if (ts.containsKey(key)) {
+                copy.put(key, get(key) + ts.get(key));
+            }
+            else {
+                throw new IllegalArgumentException();
+            }
+        }
+        return copy;
     }
 
     // TODO: Add any private helper methods.

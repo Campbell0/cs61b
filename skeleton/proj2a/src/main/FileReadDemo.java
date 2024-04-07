@@ -7,7 +7,7 @@ public class FileReadDemo {
         In in = new In("./data/ngrams/very_short.csv");
         int i = 0;
 
-        while (!in.isEmpty()) {
+        while (in.hasNextLine()) {
             i += 1;
             String nextLine = in.readLine();
             System.out.print("Line " + i + " is: ");
