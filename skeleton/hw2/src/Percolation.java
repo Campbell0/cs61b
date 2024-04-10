@@ -8,55 +8,65 @@ import java.util.List;
 
 public class Percolation {
     // TODO: Add any necessary instance variables.
-    int[][] grid;
+    boolean[][] grid;
+    int size;
     int openSite;
+    // create two set, one for check percolation, another for judge is a site is full.
+    WeightedQuickUnionUF setForFlow;
     WeightedQuickUnionUF set;
-    List<Integer> virtualTopSite = new ArrayList<>();
-    List<Integer> virtualBottomSite = new ArrayList<>();
     int[][] neighborSite = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
     public Percolation(int N) {
         // TODO: Fill in this constructor.
-        grid = new int[N][N];
+        size = N;
+        grid = new boolean[N][N];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                grid[i][j] = -1;
+                grid[i][j] = false;
             }
         }
         openSite = 0;
-        set = new WeightedQuickUnionUF(grid.length * grid.length);
+        set = new WeightedQuickUnionUF(size * size + 2);
+        setForFlow = new WeightedQuickUnionUF(size * size + 1);
     }
 
     public void open(int row, int col) {
-        grid[row][col] = 0;
-        openSite++;
-        connectNeighborSites(row, col);
-        if (row == 0) {
-            setFull(row, col);
-            virtualTopSite.add(xyTo1D(row, col));
-        } else if (row == grid.length - 1) {
-            virtualBottomSite.add(xyTo1D(row, col));
+        if (!checkValidSite(row, col)) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
         }
-        liquidFlow(row, col);
+        grid[row][col] = true;
+        openSite++;
+        // connect current site with neighbor site.
+        connectNeighborSites(row, col);
+        // key: don't add bottom site to setForFlow, so that won't happen backwash.
+        if (row == 0) {
+            set.union(0, xyTo1D(row, col));
+            setForFlow.union(0, xyTo1D(row, col));
+        }
+        if (row == size - 1) {
+            set.union(size * size + 1, xyTo1D(row, col));
+        }
+        connectNeighborSites(row, col);
     }
 
     public boolean isOpen(int row, int col) {
-        return grid[row][col] >= 0;
+        if (!checkValidSite(row, col)) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        return grid[row][col];
     }
 
     public boolean isFull(int row, int col) {
-        return grid[row][col] >= 1;
+        if (!checkValidSite(row, col)) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        return isOpen(row, col) && setForFlow.connected(xyTo1D(row, col), 0);
     }
 
     public int numberOfOpenSites() {
         return openSite;
     }
 
-    public void setFull(int row, int col) {
-        if (checkValidSite(row, col) && isOpen(row, col)) {
-            grid[row][col] = 1;
-        }
-    }
     public void connectNeighborSites(int row, int col) {
         int neighborRow;
         int neighborCol;
@@ -67,42 +77,14 @@ public class Percolation {
                 int currentSite = xyTo1D(row, col);
                 int neighborSite = xyTo1D(neighborRow, neighborCol);
                 set.union(currentSite, neighborSite);
+                setForFlow.union(currentSite, neighborSite);
             }
         }
 
-    }
-    public void liquidFlow(int r, int c) {
-        int neighborRow;
-        int neighborCol;
-        for (int[] ints : neighborSite) {
-            neighborRow = r + ints[0];
-            neighborCol = c + ints[1];
-            if (checkValidSite(neighborRow, neighborCol) && isFull(neighborRow, neighborCol)) {
-                setFull(r, c);
-                break;
-            }
-        }
-        if (isFull(r, c)) {
-            int root = set.find(xyTo1D(r, c));
-            for (int row = 1; row < grid.length; ++row) {
-                for (int col = 0; col < grid.length; ++col) {
-                    if (set.find(xyTo1D(row, col)) == root) {
-                        setFull(row, col);
-                    }
-                }
-            }
-        }
     }
 
     public boolean percolates() {
-        for (int top : virtualTopSite) {
-            for (int bottom : virtualBottomSite) {
-                if (set.connected(top, bottom)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return set.connected(0, size * size + 1);
     }
 
     public boolean checkValidSite(int row, int col) {

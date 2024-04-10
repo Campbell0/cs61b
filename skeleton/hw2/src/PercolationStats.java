@@ -47,7 +47,7 @@ public class PercolationStats {
     }
 
     public static void main(String[] args) {
-        int trials = 100, gridSize = 80;
+        int trials = 100, gridSize = 200;
         Stopwatch sw = new Stopwatch();
         PercolationStats ps = new PercolationStats(gridSize, trials);
         System.out.println(sw.elapsedTime());
