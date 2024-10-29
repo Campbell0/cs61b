@@ -2,17 +2,11 @@ package game2048;
 
 import ucb.gui2.Pad;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.FontMetrics;
-
-import static java.lang.Math.max;
-import static java.lang.Math.abs;
-import static java.lang.Math.round;
+import static java.lang.Math.*;
 
 /** A widget that displays a 2048 board.
  *  @author P. N. Hilfinger

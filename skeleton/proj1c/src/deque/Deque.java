@@ -1,7 +1,6 @@
 package deque;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by hug on 2/4/2017. Methods are provided in the suggested order

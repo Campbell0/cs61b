@@ -1,15 +1,9 @@
 package ngrams;
 
 import edu.princeton.cs.algs4.In;
-import net.sf.saxon.functions.registry.UseWhen30FunctionSet;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.TreeMap;
-
-import static ngrams.TimeSeries.MAX_YEAR;
-import static ngrams.TimeSeries.MIN_YEAR;
 
 /**
  * An object that provides utility methods for making queries on the

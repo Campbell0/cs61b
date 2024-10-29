@@ -1,9 +1,9 @@
 package speed;
 
 import edu.princeton.cs.algs4.Stopwatch;
-import java.util.*;
-
 import hashmap.Map61B;
+
+import java.util.*;
 
 import static hashmap.MyHashMapFactory.createBucketedMap;
 

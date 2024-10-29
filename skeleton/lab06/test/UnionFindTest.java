@@ -1,7 +1,8 @@
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static com.google.common.truth.Truth.assertThat;
-import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.Assert.fail;
 
 public class UnionFindTest {
@@ -80,10 +81,20 @@ public class UnionFindTest {
         }
     }
 
-    /**
-     * Write your own tests below here to verify for correctness. The given tests are not comprehensive.
-     */
 
+
+    /**
+     * Test whether path-compression is applied correctly when using the find() function
+     * */
+    @Test
+    public void test5() {
+        UnionFind uf = new UnionFind(new int[]{-1, 0, 1, 2, 3, 4, 5});
+        assertThat(uf.returnData()).isEqualTo(new int[]{-1, 0, 1, 2, 3, 4, 5});
+        System.out.println(Arrays.toString(uf.returnData()));
+        uf.find(6);
+        assertThat(uf.returnData()).isEqualTo(new int[]{-1, 0, 0, 0, 0, 0, 0});
+        System.out.println(Arrays.toString(uf.returnData()));
+    }
 }
 
 

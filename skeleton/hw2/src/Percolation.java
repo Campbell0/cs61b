@@ -1,9 +1,4 @@
-import edu.princeton.cs.algs4.Alphabet;
-import edu.princeton.cs.algs4.QuickFindUF;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Percolation {

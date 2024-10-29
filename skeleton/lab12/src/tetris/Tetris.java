@@ -1,10 +1,10 @@
 package tetris;
 
-import tileengine.TETile;
 import tileengine.TERenderer;
+import tileengine.TETile;
 import tileengine.Tileset;
 
-import java.util.*;
+import java.util.Random;
 
 /**
  *  Provides the logic for Tetris.

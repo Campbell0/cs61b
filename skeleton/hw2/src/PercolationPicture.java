@@ -1,9 +1,9 @@
-import java.awt.Font;
-import java.io.File;
-
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
+
+import java.awt.*;
+import java.io.File;
 
 public class PercolationPicture {
     // delay in miliseconds (controls animation speed)

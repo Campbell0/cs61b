@@ -1,7 +1,5 @@
 import deque.ArrayDeque;
 import deque.Deque;
-import edu.princeton.cs.algs4.BinaryIn;
-import edu.princeton.cs.algs4.In;
 import jh61b.utils.Reflection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;

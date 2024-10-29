@@ -1,7 +1,7 @@
 import browser.NgordnetQuery;
 import browser.NgordnetQueryHandler;
-import org.junit.jupiter.api.Test;
 import main.AutograderBuddy;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 

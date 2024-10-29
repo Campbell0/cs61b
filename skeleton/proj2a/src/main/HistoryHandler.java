@@ -8,7 +8,6 @@ import org.knowm.xchart.XYChart;
 import plotting.Plotter;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 public class HistoryHandler extends NgordnetQueryHandler {
 	NGramMap ngm;

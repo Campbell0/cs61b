@@ -1,11 +1,10 @@
 package game2048;
 
-import ucb.gui2.TopLevel;
 import ucb.gui2.LayoutSpec;
-
-import java.util.concurrent.ArrayBlockingQueue;
+import ucb.gui2.TopLevel;
 
 import java.awt.event.KeyEvent;
+import java.util.concurrent.ArrayBlockingQueue;
 
 
 /** The GUI controller for a 2048 board and buttons.

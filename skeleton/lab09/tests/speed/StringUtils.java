@@ -1,7 +1,7 @@
 package speed;
 
-import java.util.regex.Pattern;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 /** Utility function for Strings.
  *  @author Josh Hug

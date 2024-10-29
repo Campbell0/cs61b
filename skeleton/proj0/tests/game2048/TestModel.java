@@ -1,10 +1,11 @@
 package game2048;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+
 import static com.google.common.truth.Truth.assertWithMessage;
-import static game2048.TestUtils.checkTilt;
 
 
 @Timeout(value = 60, threadMode = Timeout.ThreadMode.SEPARATE_THREAD)

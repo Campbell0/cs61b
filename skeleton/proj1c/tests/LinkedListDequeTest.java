@@ -1,7 +1,6 @@
 import deque.ArrayDeque;
 import deque.Deque;
 import deque.LinkedListDeque;
-import edu.princeton.cs.algs4.In;
 import jh61b.utils.Reflection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

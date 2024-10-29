@@ -1,6 +1,6 @@
 package tileengine;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Contains constant tile objects, to avoid having to remake the same tiles in different parts of

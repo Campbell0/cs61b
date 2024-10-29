@@ -2,9 +2,6 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.Stopwatch;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PercolationStats {
     private final double mean;
     private final double stddev;

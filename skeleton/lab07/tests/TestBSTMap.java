@@ -1,7 +1,7 @@
-import static org.junit.Assert.*;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.*;
 
 /** Tests by Brendan Hu, Spring 2015, revised for 2016 by Josh Hug and for 2023 by Noah Adhikari */
 public class TestBSTMap {

@@ -1,8 +1,5 @@
 package game2048;
 
-import edu.princeton.cs.algs4.In;
-
-import java.lang.reflect.Array;
 import java.util.Formatter;
 
 
